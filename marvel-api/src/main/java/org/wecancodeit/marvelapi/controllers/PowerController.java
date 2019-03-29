@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.wecancodeit.marvelapi.models.Hero;
+import org.wecancodeit.marvelapi.models.Power;
+import org.wecancodeit.marvelapi.models.Team;
+import org.wecancodeit.marvelapi.repositories.HeroRepository;
+import org.wecancodeit.marvelapi.repositories.PowerRepository;
+import org.wecancodeit.marvelapi.repositories.TeamRepository;
 
 
 
@@ -24,10 +30,6 @@ public class PowerController {
 	HeroRepository heroRepo;
 	@Resource
 	TeamRepository teamRepo;
-	@Resource
-	TagRepository tagRepo;
-	@Resource
-	CommentRepository commentRepo;
 
 	@GetMapping("")
 	public Collection<Power> getPowers() {
@@ -43,18 +45,17 @@ public class PowerController {
 		String duration = newPower.getString("duration");
 		int powerRating = Integer.parseInt(newPower.getString("powerRating"));
 		Hero hero = heroRepo.findByHeroName(newPower.getString("hero"));
-		Tag tag = tagRepo.findByTagName(newPower.getString("powerTag"));
-		powerRepo.save(new Power(powerTitle, duration, powerRating, hero, tag));
+		powerRepo.save(new Power(powerTitle, duration, powerRating, hero));
 		return (Collection<Team>) teamRepo.findAll();
 	}
-	
-	@PostMapping("/comments/add")
-	public Collection<Team> addPowerComment(@RequestBody String body) throws JSONException {
-		JSONObject newPowerComment = new JSONObject(body);
-		String powerCommentBody = newPowerComment.getString("powerCommentBody");
-		Power power = powerRepo.findByPowerName(newPowerComment.getString("powerCommentPower"));
-		commentRepo.save(new PowerComment(powerCommentBody, power));
-		return (Collection<Team>) teamRepo.findAll();
-	}
+//	
+//	@PostMapping("/comments/add")
+//	public Collection<Team> addPowerComment(@RequestBody String body) throws JSONException {
+//		JSONObject newPowerComment = new JSONObject(body);
+//		String powerCommentBody = newPowerComment.getString("powerCommentBody");
+//		Power power = powerRepo.findByPowerName(newPowerComment.getString("powerCommentPower"));
+//		commentRepo.save(new PowerComment(powerCommentBody, power));
+//		return (Collection<Team>) teamRepo.findAll();
+//	}
 
 }

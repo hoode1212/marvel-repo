@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.wecancodeit.marvelapi.models.Hero;
+import org.wecancodeit.marvelapi.models.Team;
+import org.wecancodeit.marvelapi.repositories.HeroRepository;
+import org.wecancodeit.marvelapi.repositories.TeamRepository;
 
 
 
@@ -42,8 +46,7 @@ public class HeroController {
 	String heroImage = newHero.getString("heroImage");
 	int heroRating = Integer.parseInt(newHero.getString("heroRating"));
 	Team team = teamRepo.findByTeamName(newHero.getString("team"));
-	Tag tag = tagRepo.findByTagName(newHero.getString("heroTag"));
-	heroRepo.save(new Hero (heroName, heroImage, heroRating, team, tag));
+	heroRepo.save(new Hero (heroName, heroImage, heroRating, team));
 		return (Collection<Team>)teamRepo.findAll();
 	}
 //	
