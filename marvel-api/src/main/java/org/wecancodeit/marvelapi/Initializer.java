@@ -20,7 +20,7 @@ public class Initializer implements CommandLineRunner {
 	TeamRepository teamRepo;
 	@Resource
 	PowerRepository powerRepo;
-	@Resource
+
 	
 	@Override
 	public void run(String... args) throws Exception {
