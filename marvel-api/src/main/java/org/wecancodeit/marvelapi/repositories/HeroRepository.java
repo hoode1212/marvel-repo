@@ -9,4 +9,6 @@ public interface HeroRepository extends CrudRepository<Hero, Long>{
 	
 	Hero findByHeroName(String heroName);
 
+	
+
 }
