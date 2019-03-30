@@ -5,7 +5,6 @@ import javax.annotation.Resource;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 import org.wecancodeit.marvelapi.models.Hero;
-import org.wecancodeit.marvelapi.models.Power;
 import org.wecancodeit.marvelapi.models.Team;
 import org.wecancodeit.marvelapi.repositories.HeroRepository;
 import org.wecancodeit.marvelapi.repositories.PowerRepository;
@@ -20,7 +19,6 @@ public class Initializer implements CommandLineRunner {
 	TeamRepository teamRepo;
 	@Resource
 	PowerRepository powerRepo;
-	@Resource
 	
 	@Override
 	public void run(String... args) throws Exception {
