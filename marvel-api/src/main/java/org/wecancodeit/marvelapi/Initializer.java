@@ -1,8 +1,11 @@
 package org.wecancodeit.marvelapi;
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> beadb7a35d987b2b65faf64568b345f04c6ef3e5
 import javax.annotation.Resource;
 
 import org.springframework.boot.CommandLineRunner;
