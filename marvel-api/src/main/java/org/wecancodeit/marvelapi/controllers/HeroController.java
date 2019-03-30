@@ -4,7 +4,6 @@ package org.wecancodeit.marvelapi.controllers;
 import java.util.Collection;
 
 import javax.annotation.Resource;
-import javax.swing.text.html.HTML.Tag;
 
 import org.json.JSONException;
 import org.json.JSONObject;
