@@ -18,9 +18,6 @@ import org.wecancodeit.marvelapi.repositories.HeroRepository;
 import org.wecancodeit.marvelapi.repositories.TeamRepository;
 
 
-
-
-
 @RestController
 @RequestMapping("/heroes")
 public class HeroController {

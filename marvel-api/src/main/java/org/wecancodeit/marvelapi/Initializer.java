@@ -7,11 +7,9 @@ import org.springframework.stereotype.Service;
 import org.wecancodeit.marvelapi.models.Hero;
 import org.wecancodeit.marvelapi.models.Power;
 import org.wecancodeit.marvelapi.models.Team;
-import org.wecancodeit.marvelapi.models.Villains;
 import org.wecancodeit.marvelapi.repositories.HeroRepository;
 import org.wecancodeit.marvelapi.repositories.PowerRepository;
 import org.wecancodeit.marvelapi.repositories.TeamRepository;
-import org.wecancodeit.marvelapi.repositories.VillainsRepository;
 
 
 @Service
@@ -23,7 +21,6 @@ public class Initializer implements CommandLineRunner {
 	@Resource
 	PowerRepository powerRepo;
 	@Resource
-	VillainsRepository villainsRepo;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -44,66 +41,7 @@ public class Initializer implements CommandLineRunner {
 		Hero hero10 = heroRepo.save(new Hero("Hawkeye","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU3V7da32s15xm5S_n5A_HfbEzfouOFrcFJo2EM-zyBsD0Lf0wIA", 0, hero));
 		Hero hero11 = heroRepo.save(new Hero("Okoye","https://www.picclickimg.com/d/l400/pict/132652846327_/Avengers-Infinity-War-Okoye-Movie-Poster-Fridge-Magnet.jpg", 0, hero));
 		Hero hero12 = heroRepo.save(new Hero("War Machine","https://i.pinimg.com/originals/3e/5e/54/3e5e54f4bba68792e1ba31b7140e26ab.jpg", 0, hero));
-		
-		Villains villains1 = villainsRepo.save(new Villains("Thanos", "https://pbs.twimg.com/profile_images/992168535039381504/rlneO9iC_400x400.jpg", 10, villains));
-		
-		
-		Power powerZero = powerRepo.save(new Power(flight));
-		
-		
-		powerRepo.save(new Power );
-		
-		powerRepo.save(new Power);
-		
-		powerRepo.save(new Power);
-		
-		powerRepo.save(new Power);
-		
-		heroRepo.save(new Hero);
-		
-		heroRepo.save(new Hero);
-		
-		heroRepo.save(new Hero);
-		
-		heroRepo.save(new Hero);
-		
-	    Team teamOne = teamRepo.save);
-		
-		Hero heroOne= heroRepo.save);
-		
-		Power powerOne= powerRepo.save(
-				new Power);
-	
-		
-		team = teamRepo.save(new team);
-		
-		hero = heroRepo.save(new hero);
-		
-		powerRepo.save(new power);
-		
-		teamRepo.save(new Team(strong));
-		teamRepo.save(new Team(strong));
-		teamRepo.save(new Team(awesome));
-		teamRepo.save(new Team(cool));
-		teamRepo.save(new Team(strong));
-		teamRepo.save(new Team( awesome));
-		teamRepo.save(new Team(smart));
-		teamRepo.save(new Team(cool));
-		teamRepo.save(new Team(cool));
-		teamRepo.save(new Team(cool));
-		teamRepo.save(new Team(cool));
-		teamRepo.save(new Team(cool));
-		teamRepo.save(new Team(cool));
-		teamRepo.save(new Team(cool));
-		teamRepo.save(new Team(cool));
-		teamRepo.save(new Team(cool));
-		teamRepo.save(new Team(cool));
-		teamRepo.save(new Team(cool));
-		teamRepo.save(new Team(cool));
-		teamRepo.save(new Team(cool));
-		teamRepo.save(new Team(cool));
-		teamRepo.save(new Team(cool));
-		teamRepo.save(new Team(cool));
-	}
+		Hero hero13 = heroRepo.save(new Hero("Thanos", "https://pbs.twimg.com/profile_images/992168535039381504/rlneO9iC_400x400.jpg", 10, hero));
 
+	}
 }
