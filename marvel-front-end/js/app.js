@@ -1,15 +1,15 @@
 import api from './utils/api/api-action'
 import events from './utils/events/event-action'
 import Teams from './components/Teams'
-import Heroes from './components/Heroes'
+import Header from './components/Header'
 
-main()
+viewAllTeams()
+Header()
 
-function main() {
+function viewAllTeams() {
   api.getRequest('http://localhost:8080/teams', teams => {
     getAppContext().innerHTML = Teams(teams);
-  })
-  
+  }) 
 }
 
 function getAppContext() {
