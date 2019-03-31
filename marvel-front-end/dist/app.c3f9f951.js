@@ -288,10 +288,8 @@ require("../../css/teams.css");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Teams(teams) {
-  console.log(teams);
   return "\n       <ul class=\"teams\">\n           ".concat(teams.map(function (team) {
-    console.log(team.heroes);
-    return "\n                   <li class=\"team\">\n                       <h3 class=\"team__teamName\" id=\"".concat(team.teamId, "\">").concat(team.teamName, "</h3>\n                       ").concat(team.heroes, "\n                   </li>\n                   ");
+    return "\n                   <li class=\"team\">\n                       <h3 class=\"team__teamName\" id=\"".concat(team.teamId, "\">").concat(team.teamName, "</h3>\n                       \n                   </li>\n                   ");
   }).join(''), "\n       </ul>\n      ");
 }
 },{"./Heroes":"js/components/Heroes.js","../../css/teams.css":"css/teams.css"}],"js/components/Header.js":[function(require,module,exports) {
@@ -531,7 +529,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52302" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52960" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
