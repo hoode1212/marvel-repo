@@ -7,7 +7,7 @@ export default function Heroes(heroes) {
                 return `
                 <li class="hero">
                     <h4 class="hero__heroName" id="${hero.heroId}">${hero.heroName}</h4>
-                    ${hero.powers}
+                    
                     </li>
                     `
                 }).join('')}

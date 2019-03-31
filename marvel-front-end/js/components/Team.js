@@ -8,7 +8,7 @@ export default function Team(team) {
  
         <ul class="heroes">
             <li class="hero">
-            ${team.heroes}
+            ${Heroes(team.heroes)}
             </li>
         </ul>        
     </div>
