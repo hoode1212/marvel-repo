@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +37,11 @@ public class PowerController {
 	public Collection<Power> getPowers() {
 		return (Collection<Power>) powerRepo.findAll();
 
+	}
+	
+	@GetMapping("/{id}")
+	public Power viewSinglePower(@PathVariable Long id) {
+		return powerRepo.findById(id).get();
 	}
 
 	@PostMapping("/add")

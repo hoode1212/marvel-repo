@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,8 +33,12 @@ public class HeroController {
 	
 	@GetMapping("")
 	public Collection<Hero> getHeroes() {
-		return (Collection<Hero>)heroRepo.findAll();
-		
+		return (Collection<Hero>)heroRepo.findAll();	
+	}
+	
+	@GetMapping("/{id}")
+	public Hero viewSingleHero(@PathVariable Long id) {
+		return heroRepo.findById(id).get();
 	}
 
 	@PostMapping("/add")
