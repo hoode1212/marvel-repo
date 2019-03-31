@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.wecancodeit.marvelapi.models.Power;
 import org.wecancodeit.marvelapi.models.Team;
+import org.wecancodeit.marvelapi.repositories.HeroRepository;
+import org.wecancodeit.marvelapi.repositories.PowerRepository;
 import org.wecancodeit.marvelapi.repositories.TeamRepository;
 
 @CrossOrigin
@@ -21,7 +24,10 @@ import org.wecancodeit.marvelapi.repositories.TeamRepository;
 @RequestMapping("/teams")
 public class TeamController {
 
-	// Resources
+	@Resource
+	PowerRepository powerRepo;
+	@Resource
+	HeroRepository heroRepo;
 	@Resource
 	TeamRepository teamRepo;
 	
@@ -31,15 +37,8 @@ public class TeamController {
 
 	}
 
-	@PostMapping("/add")
-	public Collection<Team> addTeam(@RequestBody String body) throws JSONException {
-		JSONObject newTeam = new JSONObject(body);
-		String teamName = newTeam.getString("teamName");
-		String teamImage = newTeam.getString("teamImage");
-		int teamRating = Integer.parseInt(newTeam.getString("teamRating"));
-		teamRepo.save(new Team(teamName, teamImage, teamRating));
-		return (Collection<Team>) teamRepo.findAll();
-	}
+	
+
 	
 //	@PostMapping("/comments/add")
 //	public Collection<Team> addTeamComment(@RequestBody String body) throws JSONException {

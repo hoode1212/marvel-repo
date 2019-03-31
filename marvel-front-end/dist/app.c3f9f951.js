@@ -196,7 +196,37 @@ var _default = {
   display: display
 };
 exports.default = _default;
-},{}],"js/components/Teams.js":[function(require,module,exports) {
+},{}],"js/components/Powers.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Powers;
+
+function Powers(powers) {
+  return "\n        <ol id=\"songs\">\n            ".concat(powers.map(function (power) {
+    return "\n                    <li class=\"song\">\n                        <h3 class=\"song__title\">".concat(power.powerName, "</h3>\n                            </li>\n                ");
+  }).join(''), "\n        </ol>\n        ");
+}
+},{}],"js/components/Heroes.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Heroes;
+
+var _Powers = _interopRequireDefault(require("./Powers"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Heroes(heroes) {
+  return "\n      <ul id=\"albums\" class=\"grid-list\">\n        ".concat(heroes.map(function (hero) {
+    return "\n                <li id=\"album\" class=\"album grid-list--item\">\n                  <div class=\"grid-item-container\">\n                    <img class=\"grid-image btn-album\" src=\"".concat(hero.heroImage, "\" alt=\"Album Cover\">\n                    <h3  class=\"item-name\">").concat(hero.heroName, "</h3>\n                    <img class=\"grid-image slide\" src=\"../images/Record_Album_clip_art.svg\">\n                  </div>\n\n\n                  <div class=\"hidden modal album-modal\">\n                  <div class=\"modal-content\">\n                    <div class=\"modal-content--header\">\n                      <img class=\"model--header-image\" src=\"").concat(hero.heroImage, "\" alt=\"Album Cover\">\n                      <h2>").concat(hero.heroName, "</h2>\n                      <ul>\n                        <li>Artist Rating: ").concat(hero.heroRating, "/10</li>\n                        <li>Songs: ").concat(hero.powers.length, "</li>\n                        <li class=\"albumCommentOn\">Album Comments</li>\n                        <li class=\"albumCommentOff hidden\">Close Album Comments</li>\n                      </ul>\n                    </div>\n                    <div class=\"modal-content--body songs\">").concat((0, _Powers.default)(hero.powers), "</div>\n                  </div>\n                </div>\n         \n                \n                </li>\n            ");
+  }).join(''), "\n    </ul>\n  ");
+}
+},{"./Powers":"js/components/Powers.js"}],"js/components/Teams.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -204,12 +234,16 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Teams;
 
+var _Heroes = _interopRequireDefault(require("./Heroes"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function Teams(teams) {
-  return "\n    <ul>\n    ".concat(teams.map(function (team) {
-    return "\n        <li>\n        <img src=\"".concat(team.teamImage, "\" alt= \"Team Image\">\n        <h3>").concat(team.teamName, "</h3>\n        </li>\n        ");
-  }), "\n</ul>\n");
+  return "\n    <ul id=\"artists\" class=\"grid-list\">\n      ".concat(teams.map(function (team) {
+    return "\n              <li id=\"artist\" class=\"grid-list--item\">\n                <div class=\"grid-item-container\">\n                  <img class=\"grid-image btn-artist\" src=\"".concat(team.teamImage, "\" alt=\"Artist Image\">\n                  <h3 class=\"item-name\">").concat(team.teamName, "</h3>\n                </div>\n\n                <div id =\"artist-modal\" class=\"hidden modal\">\n                    <div class=\"modal-content\">\n                      <div class=\"modal-content--header\">\n                        <img class=\"model--header-image\" src=\"").concat(team.teamImage, "\" alt=\"Artist Image\">\n                        <h2>").concat(team.teamName, "</h2>\n                        <ul>\n                          <li>Artist Rating: ").concat(team.artistRating, "/10</li>\n                          <li>Albums: ").concat(team.heroes.length, "</li>\n                        </ul>\n                      </div>\n                      <div class=\"modal-content--body albums\">").concat((0, _Heroes.default)(Team.heroes), "</div>\n                      <div class=\"modal-content--body comments hidden\">").concat(ArtistComments(artist.artistComments), "</div>\n                    </div>\n                  </div>\n                </li>\n          ");
+  }), "\n</ul>");
 }
-},{}],"js/app.js":[function(require,module,exports) {
+},{"./Heroes":"js/components/Heroes.js"}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
 var _apiAction = _interopRequireDefault(require("./utils/api/api-action"));
@@ -259,7 +293,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60840" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62569" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
