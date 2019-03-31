@@ -1,0 +1,152 @@
+/*------------
+Global Styles
+-------------*/
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/*------------
+HEADER
+-------------*/
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-width: 100%;
+	top: 0;
+	background-color: white;
+	height: 5rem;
+	position: fixed;
+}
+
+.nhl__logo {
+	width: 50px;
+	height: auto;
+}
+
+.main-header__title {
+	display: flex;
+	align-items: center;
+	margin-left: 5rem;
+}
+
+.main-header__nav {
+	margin-top: 7px;
+	margin-right: 5rem;
+}
+
+.button {
+	background-color: navy;
+	color: #ffffff;
+	border: none;
+	margin-right: 3px;
+	padding: 5px;
+}
+
+.button:hover {
+	transform: scale(1.1);
+}
+
+/*------------
+BODY
+-------------*/
+
+body {
+	background-image: url("https://www.nhltraderumor.com/wp-content/uploads/2014/01/NHL-Logo-Wallpaper.jpg");
+	background-attachment: fixed;
+	background-size: cover;
+	min-width: 100%;
+}
+
+main {
+	margin-top: 7rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-left: 5rem;
+	text-align: center;
+}
+
+h2 {
+	font-size: 55px;
+}
+
+.conference__name:hover, .division__name:hover {
+	cursor: pointer;
+	transform: scale(1.1);
+}
+
+h3 {
+	font-size: 35px;
+}
+
+.list__item {
+	list-style-type: none;
+}
+
+.flex-list {
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+}
+
+.flex-item-container {
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	background-color: #ffffff;
+	margin: 1.5rem;
+}
+
+.team__logo {
+	height: 200px;
+	width: 200px;
+}
+
+.team__logo:hover {
+	transform: scale(1.1);
+}
+
+/*------------
+TEAM & COMMENT
+-------------*/
+
+.comment__content {
+	background-color: rgba(0,0,0,.5);
+	color: #ffffff;
+	border: 2px solid black;
+	margin: 1rem;
+	padding: 1rem;
+	text-align: left;
+}
+
+.comment__content:hover {
+	transform: scale(1.1);
+}
+
+.single-comment__content {
+	background-color: rgba(0,0,0,.5);
+	color: #ffffff;
+	font-size: 2rem;
+	border: 2px solid black;
+	margin: 1rem;
+	padding: 1rem;
+	text-align: left;
+}
+
+.add__comment, .edit__comment {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1rem;
+}
+
+.add__team--comment, .edit__comment--content {
+	height: 200px;
+	width: 100%;
+}
+
+/*# sourceMappingURL=/app.c3f9f951.css.map */

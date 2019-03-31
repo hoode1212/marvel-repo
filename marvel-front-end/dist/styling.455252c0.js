@@ -117,121 +117,74 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/utils/api/api-action.js":[function(require,module,exports) {
-"use strict";
+})({"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
 
-function getRequest(location, callback) {
-  fetch(location).then(function (response) {
-    return response.json();
-  }).then(function (data) {
-    return callback(data);
-  }).catch(function (err) {
-    return console.log(err);
-  });
+  return bundleURL;
 }
 
-function getRequest(location, callback) {
-  fetch(location).then(function (response) {
-    return response.json();
-  }).then(function (data) {
-    return callback(data);
-  }).catch(function (err) {
-    return console.log(err);
-  });
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
 }
 
-function postRequest(location, requestBody, callback) {
-  fetch(location, {
-    method: "POST",
-    body: JSON.stringify(requestBody)
-  }).then(function (response) {
-    return response.json();
-  }).then(function (data) {
-    return callback(data);
-  }).catch(function (err) {
-    return console.log(err);
-  });
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
 }
 
-var _default = {
-  getRequest: getRequest,
-  postRequest: postRequest
-};
-exports.default = _default;
-},{}],"js/utils/events/event-action.js":[function(require,module,exports) {
-"use strict";
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
+function updateLink(link) {
+  var newLink = link.cloneNode();
 
-function on(element, eventType, callback) {
-  element.addEventListener(eventType, function (event) {
-    return callback(event);
-  });
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
 }
 
-function toggle(element) {
-  element.classList.toggle('hidden');
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
 }
 
-function hide(element) {
-  element.classList.add('hidden');
-}
-
-function display(element) {
-  element.classList.remove('hidden');
-}
-
-var _default = {
-  on: on,
-  toggle: toggle,
-  hide: hide,
-  display: display
-};
-exports.default = _default;
-},{}],"js/components/Teams.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Teams;
-
-function Teams(teams) {
-  return "\n    <ul>\n    ".concat(teams.map(function (team) {
-    return "\n        <li>\n        <img src=\"".concat(team.teamImage, "\" alt= \"Team Image\">\n        <h3>").concat(team.teamName, "</h3>\n        </li>\n        ");
-  }), "\n</ul>\n");
-}
-},{}],"js/app.js":[function(require,module,exports) {
-"use strict";
-
-var _apiAction = _interopRequireDefault(require("./utils/api/api-action"));
-
-var _eventAction = _interopRequireDefault(require("./utils/events/event-action"));
-
-var _Teams = _interopRequireDefault(require("./components/Teams"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-main();
-
-function main() {
-  _apiAction.default.getRequest('http://localhost:8080/teams', function (teams) {
-    getAppContext().innerHTML = (0, _Teams.default)(teams);
-  });
-}
-
-function getAppContext() {
-  return document.querySelector("#app");
-}
-},{"./utils/api/api-action":"js/utils/api/api-action.js","./utils/events/event-action":"js/utils/events/event-action.js","./components/Teams":"js/components/Teams.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -434,5 +387,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
-//# sourceMappingURL=/app.c3f9f951.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/styling.455252c0.js.map
