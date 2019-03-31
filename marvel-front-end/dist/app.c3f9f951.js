@@ -197,18 +197,7 @@ var _default = {
 };
 exports.default = _default;
 },{}],"js/components/Heroes.js":[function(require,module,exports) {
-"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Hero;
-
-function Hero(hero) {
-  return "\n      <ul id=\"albums\" class=\"grid-list\">\n        ".concat(hero.map(function (hero) {
-    return "\n                <li id=\"hero\" class=\"hero grid-list--item\">\n                  <div class=\"grid-item-container\">\n                    <img class=\"grid-image btn-hero\" src=\"".concat(hero.heroImage, "\" alt=\"Hero Image\">\n                    <h3  class=\"item-name\">").concat(hero.heroName, "</h3>\n                    // <img class=\"grid-image slide\" src=\"heroArt\">\n                  </div>\n                  <div class=\"hidden modal hero-modal\">\n                  <div class=\"hero-content\">\n                    <div class=\"modal-content--header\">\n                      <img class=\"model--header-image\" src=\"").concat(hero.heroImage, "\" alt=\"Hero Image\">\n                      <h2>").concat(hero.heroName, "</h2>\n                      <ul>\n                        <li>Hero Rating: ").concat(hero.heroRating, "/10</li>\n                        <li>Powers: ").concat(hero.power.rating, "</li>\n                      </ul>\n                    </div>\n                    <div class=\"modal-content--body powers\">").concat(Powers(hero.powers), "\n                          <section class=\"add-powers\">\n                          <input class= \"add-powers__powersType\" type = \"text\" placeholder= \"Powers type\">\n                          <input class= \"add-powers__hero hidden\" type = \"text\" placeholder= \"Hero Name\" value= \"").concat(hero.heroName, "\">\n                          <input class= \"add-powers__description\" type = \"text\" placeholder= \"Powers Description\">\n                          <input class= \"add-powers__powersRating\" type = \"text\" placeholder= \"Powers Rating\">\n                          \n                           \n                         \n                          <button class=\"add-song__submit\">Submit</button>\n                          </section>\n                    \n                    \n                    \n                    \n                    \n                    \n                    </div>\n                    \n                  </div>\n                </div>\n         \n                \n                </li>\n            ");
-  }).join(''), "\n    </ul>\n  ");
-}
 },{}],"js/components/Teams.js":[function(require,module,exports) {
 "use strict";
 
@@ -223,10 +212,21 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function Teams(teams) {
   return "\n    <ul>\n    ".concat(teams.map(function (team) {
-    return "\n        <li>\n        <img src=\"".concat(team.teamImage, "\" alt= \"Team Image\">\n        <h3>").concat(team.teamName, "</h3>\n        </li>\n        ");
+    return "\n        <li>\n        <img src=\"".concat(team.teamImage, "\" alt= \"Team Image\">\n        <h3>").concat(team.teamName, "</h3>\n        <h3>").concat(team.teamRating, "</h3>\n        <h3>").concat(team.heroes, "</h3>\n        </li>\n        ");
   }), "\n</ul>\n");
 }
-},{"./Heroes":"js/components/Heroes.js"}],"js/app.js":[function(require,module,exports) {
+},{"./Heroes":"js/components/Heroes.js"}],"js/components/Header.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Header;
+
+function Header() {
+  return "\n    <header class=\"logo\">\n        <img src=\"https://pixel.nymag.com/imgs/daily/vulture/2016/07/23/23-marvel-logo.w700.h700.jpg\">\n        <h1>The Avengers</h1>\n    </header>\n    ";
+}
+},{}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
 var _apiAction = _interopRequireDefault(require("./utils/api/api-action"));
@@ -235,13 +235,14 @@ var _eventAction = _interopRequireDefault(require("./utils/events/event-action")
 
 var _Teams = _interopRequireDefault(require("./components/Teams"));
 
-var _Heroes = _interopRequireDefault(require("./components/Heroes"));
+var _Header = _interopRequireDefault(require("./components/Header"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-main();
+viewAllTeams();
+(0, _Header.default)();
 
-function main() {
+function viewAllTeams() {
   _apiAction.default.getRequest('http://localhost:8080/teams', function (teams) {
     getAppContext().innerHTML = (0, _Teams.default)(teams);
   });
@@ -250,7 +251,7 @@ function main() {
 function getAppContext() {
   return document.querySelector("#app");
 }
-},{"./utils/api/api-action":"js/utils/api/api-action.js","./utils/events/event-action":"js/utils/events/event-action.js","./components/Teams":"js/components/Teams.js","./components/Heroes":"js/components/Heroes.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./utils/api/api-action":"js/utils/api/api-action.js","./utils/events/event-action":"js/utils/events/event-action.js","./components/Teams":"js/components/Teams.js","./components/Header":"js/components/Header.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -278,7 +279,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51010" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51725" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
