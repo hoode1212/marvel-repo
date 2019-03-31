@@ -1,2 +1,15 @@
+.header {
+    align-items: center;
+    background-image: url ("/images/marvelHeader.jpg");
+    display: flex;
+    height: 5rem;
+	justify-content: space-between;
+    min-width: 100%;
+    position: fixed;
+	top: 0;
+	
+	
+	
+}
 
 /*# sourceMappingURL=/styling.455252c0.css.map */

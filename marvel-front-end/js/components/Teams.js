@@ -1,3 +1,5 @@
+import Heroes from './Heroes'
+
 export default function Teams(teams){
     return `
     <ul>

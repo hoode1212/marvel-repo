@@ -1,6 +1,7 @@
 import api from './utils/api/api-action'
 import events from './utils/events/event-action'
 import Teams from './components/Teams'
+import Heroes from './components/Heroes'
 
 main()
 
