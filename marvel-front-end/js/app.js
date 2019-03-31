@@ -79,7 +79,7 @@ function addTeams() {
 function viewSingleTeam() {
 	events.on(getAppContext(), 'click', () => {
 		if(event.target.classList.contains('team__teamName')) {
-			api.getRequest(`http://localhost:8080/teams/${event.target.teamId}`, team => {
+			api.getRequest(`http://localhost:8080/teams/${event.target.id}`, team => {
 				getAppContext().innerHTML = Team(team)
 			})
 		}
@@ -92,7 +92,7 @@ function addHeroToTeam(){
 		if(event.target.classList.contains('add__hero__button')){
 			const heroName = document.querySelector('.add__heroName').value
 			const heroImage = document.querySelector('.add__heroImage').value
-			api.postRequest(`http://localhost:8080/heroes/add/${event.target.teamId}`, {
+			api.postRequest(`http://localhost:8080/heroes/add/${event.target.id}`, {
 				heroName : heroName,
 				heroImage : heroImage,	
 			}, (team) => getAppContext().innerHTML = Team(team) )
@@ -103,7 +103,7 @@ function addHeroToTeam(){
 function viewSingleHero(){
 	events.on(getAppContext(), 'click', () => {
 		if(event.target.classList.contains('hero__heroName')){
-			api.getRequest(`http://localhost:8080/heroes/${event.target.heroId}`, hero => {
+			api.getRequest(`http://localhost:8080/heroes/${event.target.id}`, hero => {
         getAppContext().innerHTML = Hero(hero)
 			})
 		}
@@ -117,7 +117,7 @@ function addPowerToHero(){
 		if(event.target.classList.contains('add__power__button')){
 			const powerName = document.querySelector('.add__powerName').value
 			const description = document.querySelector('.add__description').value
-        api.postRequest(`http://localhost:8080/powers/add/${event.target.powerId}`, {
+        api.postRequest(`http://localhost:8080/powers/add/${event.target.id}`, {
 				powerName : powerName,
 				description : description,
 			}, (hero) => getAppContext().innerHTML = Hero(hero))
@@ -128,7 +128,7 @@ function addPowerToHero(){
 function viewSinglePower() {
 	events.on(getAppContext(), 'click', () => {
 		if(event.target.classList.contains('power__powerName')) {
-			api.getRequest(`http://localhost:8080/powers/${event.target.powerId}`, power => {
+			api.getRequest(`http://localhost:8080/powers/${event.target.id}`, power => {
 				getAppContext().innerHTML = Power(power)
 			})
 		}

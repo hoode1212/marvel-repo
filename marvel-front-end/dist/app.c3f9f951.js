@@ -437,7 +437,7 @@ function addTeams() {
 function viewSingleTeam() {
   _eventAction.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('team__teamName')) {
-      _apiAction.default.getRequest("http://localhost:8080/teams/".concat(event.target.teamId), function (team) {
+      _apiAction.default.getRequest("http://localhost:8080/teams/".concat(event.target.id), function (team) {
         getAppContext().innerHTML = (0, _Team.default)(team);
       });
     }
@@ -451,7 +451,7 @@ function addHeroToTeam() {
       var heroName = document.querySelector('.add__heroName').value;
       var heroImage = document.querySelector('.add__heroImage').value;
 
-      _apiAction.default.postRequest("http://localhost:8080/heroes/add/".concat(event.target.teamId), {
+      _apiAction.default.postRequest("http://localhost:8080/heroes/add/".concat(event.target.id), {
         heroName: heroName,
         heroImage: heroImage
       }, function (team) {
@@ -464,7 +464,7 @@ function addHeroToTeam() {
 function viewSingleHero() {
   _eventAction.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('hero__heroName')) {
-      _apiAction.default.getRequest("http://localhost:8080/heroes/".concat(event.target.heroId), function (hero) {
+      _apiAction.default.getRequest("http://localhost:8080/heroes/".concat(event.target.id), function (hero) {
         getAppContext().innerHTML = (0, _Hero.default)(hero);
       });
     }
@@ -478,7 +478,7 @@ function addPowerToHero() {
       var powerName = document.querySelector('.add__powerName').value;
       var description = document.querySelector('.add__description').value;
 
-      _apiAction.default.postRequest("http://localhost:8080/powers/add/".concat(event.target.powerId), {
+      _apiAction.default.postRequest("http://localhost:8080/powers/add/".concat(event.target.id), {
         powerName: powerName,
         description: description
       }, function (hero) {
@@ -491,7 +491,7 @@ function addPowerToHero() {
 function viewSinglePower() {
   _eventAction.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('power__powerName')) {
-      _apiAction.default.getRequest("http://localhost:8080/powers/".concat(event.target.powerId), function (power) {
+      _apiAction.default.getRequest("http://localhost:8080/powers/".concat(event.target.id), function (power) {
         getAppContext().innerHTML = (0, _Power.default)(power);
       });
     }
@@ -529,7 +529,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52960" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54550" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

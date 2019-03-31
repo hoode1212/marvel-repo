@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 import org.wecancodeit.marvelapi.models.Hero;
+import org.wecancodeit.marvelapi.models.Power;
 import org.wecancodeit.marvelapi.models.Team;
 import org.wecancodeit.marvelapi.repositories.HeroRepository;
 import org.wecancodeit.marvelapi.repositories.PowerRepository;
@@ -46,6 +47,13 @@ public class Initializer implements CommandLineRunner {
 		Hero hero17 = heroRepo.save(new Hero("Black Dwarf", "https://upload.wikimedia.org/wikipedia/en/b/b5/Black_Dwarf.jpg", 6, blackOrder));
 		Hero hero18 = heroRepo.save(new Hero("Corvus Glaive", "https://upload.wikimedia.org/wikipedia/en/2/2b/Corvus_Glaive.jpg", 6, blackOrder));
 
-
+		powerRepo.save(new Power("flying", "pretty self descriptive", 5, hero1));
+		powerRepo.save(new Power("genius", "is really smart", 5, hero1));
+		powerRepo.save(new Power("I am Groot", "I am Groot", 5, hero6));
+		powerRepo.save(new Power("life", "perfectly balanced", 5, hero13));
+		powerRepo.save(new Power("precision", "never misses target", 5, hero10));
+		powerRepo.save(new Power("strongest there is", "infinite strength", 5, hero3));
+		
+		
 	}
 }
