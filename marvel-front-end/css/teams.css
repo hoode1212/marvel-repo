@@ -1,8 +1,10 @@
 ul{
+    margin-top: 5rem;
     display: flex;
     flex-direction: column;
     }
     
     .team__container{
+        margin-top: 5rem;
         flex-direction: column;
     }

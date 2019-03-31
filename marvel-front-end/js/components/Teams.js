@@ -1,4 +1,5 @@
 import Heroes from './Heroes'
+import '../../css/teams.css'
 
 export default function Teams(teams) {
    return `
