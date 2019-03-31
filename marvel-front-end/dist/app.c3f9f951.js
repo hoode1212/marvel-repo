@@ -167,23 +167,8 @@ function on(element, eventType, callback) {
   });
 }
 
-function toggle(element) {
-  element.classList.toggle('hidden');
-}
-
-function hide(element) {
-  element.classList.add('hidden');
-}
-
-function display(element) {
-  element.classList.remove('hidden');
-}
-
 var _default = {
-  on: on,
-  toggle: toggle,
-  hide: hide,
-  display: display
+  on: on
 };
 exports.default = _default;
 },{}],"js/components/Powers.js":[function(require,module,exports) {
@@ -383,6 +368,7 @@ var _Team = _interopRequireDefault(require("./components/Team"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 main();
+(0, _Header.default)();
 
 function main() {
   _apiAction.default.getRequest('http://localhost:8080/teams', function (teams) {
@@ -416,7 +402,7 @@ function navHeroes() {
 
   _eventAction.default.on(heroButton, 'click', function () {
     _apiAction.default.getRequest('http://localhost:8080/heroes', function (heroes) {
-      getAppContext().innerHTML = Heroes(heroes);
+      getAppContext().innerHTML = (0, _Heroes.default)(heroes);
     });
   });
 }
@@ -426,7 +412,7 @@ function navPowers() {
 
   _eventAction.default.on(powerButton, 'click', function () {
     _apiAction.default.getRequest('http://localhost:8080/powers', function (powers) {
-      getAppContext().innerHTML = Powers(powers);
+      getAppContext().innerHTML = (0, _Powers.default)(powers);
     });
   });
 } //All Team functions will live here
@@ -452,7 +438,7 @@ function viewSingleTeam() {
   _eventAction.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('team__teamName')) {
       _apiAction.default.getRequest("http://localhost:8080/teams ".concat(event.target.teamId), function (team) {
-        getAppContext().innerHTML = Team(team);
+        getAppContext().innerHTML = (0, _Team.default)(team);
       });
     }
   });
@@ -469,7 +455,7 @@ function addHeroToTeam() {
         heroName: heroName,
         heroImage: heroImage
       }, function (team) {
-        return getAppContext().innerHTML = Team(team);
+        return getAppContext().innerHTML = (0, _Team.default)(team);
       });
     }
   });
@@ -479,7 +465,7 @@ function viewSingleHero() {
   _eventAction.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('hero__heroName')) {
       _apiAction.default.getRequest("http://localhost:8080/heroes ".concat(event.target.heroId), function (hero) {
-        getAppContext().innerHTML = Hero(hero);
+        getAppContext().innerHTML = (0, _Hero.default)(hero);
       });
     }
   });
@@ -496,7 +482,7 @@ function addPowerToHero() {
         powerName: powerName,
         description: description
       }, function (hero) {
-        return getAppContext().innerHTML = Hero(hero);
+        return getAppContext().innerHTML = (0, _Hero.default)(hero);
       });
     }
   });
@@ -506,7 +492,7 @@ function viewSinglePower() {
   _eventAction.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('power__powerName')) {
       _apiAction.default.getRequest("http://localhost:8080/powers".concat(event.target.powerId), function (power) {
-        getAppContext().innerHTML = Power(power);
+        getAppContext().innerHTML = (0, _Power.default)(power);
       });
     }
   });
@@ -543,7 +529,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57832" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56904" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

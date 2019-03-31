@@ -2,13 +2,14 @@ import api from './utils/api/api-action'
 import events from './utils/events/event-action'
 import Teams from './components/Teams'
 import Header from './components/Header'
-import Songs from './components/Powers'
-import Song from './components/Power'
-import Albums from './components/Heroes'
-import Album from './components/Hero'
-import Artist from './components/Team'
+import Powers from './components/Powers'
+import Power from './components/Power'
+import Heroes from './components/Heroes'
+import Hero from './components/Hero'
+import Team from './components/Team'
 
 main()
+Header()
 
 function main() {
 	api.getRequest('http://localhost:8080/teams', teams => {
