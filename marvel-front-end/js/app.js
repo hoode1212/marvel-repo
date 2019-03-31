@@ -2,8 +2,11 @@ import api from './utils/api/api-action'
 import events from './utils/events/event-action'
 import Teams from './components/Teams'
 import Header from './components/Header'
-
-
+import Songs from './components/Powers'
+import Song from './components/Power'
+import Albums from './components/Heroes'
+import Album from './components/Hero'
+import Artist from './components/Team'
 
 main()
 

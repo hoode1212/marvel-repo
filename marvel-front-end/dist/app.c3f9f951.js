@@ -135,16 +135,6 @@ function getRequest(location, callback) {
   });
 }
 
-function getRequest(location, callback) {
-  fetch(location).then(function (response) {
-    return response.json();
-  }).then(function (data) {
-    return callback(data);
-  }).catch(function (err) {
-    return console.log(err);
-  });
-}
-
 function postRequest(location, requestBody, callback) {
   fetch(location, {
     method: "POST",
@@ -196,9 +186,37 @@ var _default = {
   display: display
 };
 exports.default = _default;
-},{}],"js/components/Heroes.js":[function(require,module,exports) {
+},{}],"js/components/Powers.js":[function(require,module,exports) {
+"use strict";
 
-},{}],"js/components/Teams.js":[function(require,module,exports) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Powers;
+
+function Powers(powers) {
+  return "\n        <ul class=\"powers\">\n            ".concat(powers.map(function (power) {
+    return "\n                    <li class=\"power\">\n                        <h4 class=\"power__powerName\" id=\"".concat(power.powerId, "\">").concat(power.powerName, "</h4>\n                    </li>\n                ");
+  }).join(''), "\n        </ul>\n    ");
+}
+},{}],"js/components/Heroes.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Heroes;
+
+var _Powers = _interopRequireDefault(require("./Powers"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Heroes(heroes) {
+  return "\n        <ul class=\"heroes\">\n            ".concat(heroes.map(function (hero) {
+    return "\n                    <h4 class=\"hero__heroName\" id=\"".concat(hero.heroId, "\">").concat(hero.heroName, "</h4>\n                    ");
+  }).join(''), "\n        </ul>\n    ");
+}
+},{"./Powers":"js/components/Powers.js"}],"js/components/Teams.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -211,9 +229,9 @@ var _Heroes = _interopRequireDefault(require("./Heroes"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Teams(teams) {
-  return "\n    <ul>\n    ".concat(teams.map(function (team) {
-    return "\n        <li>\n        <img src=\"".concat(team.teamImage, "\" alt= \"Team Image\">\n        <h3>").concat(team.teamName, "</h3>\n        <h3>").concat(team.teamRating, "</h3>\n        <h3>").concat(team.heroes, "</h3>\n        </li>\n        ");
-  }), "\n</ul>\n");
+  return "\n       <ul class=\"teams\">\n           ".concat(teams.map(function (team) {
+    return "\n                   <li class=\"team\">\n                       <h3 class=\"team__teamName\" id=\"".concat(team.teamId, "\">").concat(team.teamName, "</h3>\n                   </li>\n                   ");
+  }).join(''), "\n       </ul>\n       <section class=\"add__team\">\n           <input type=\"text\" class=\"add__teamName\" placeholder=\"Team Name\">\n           <input type=\"text\" class=\"add__teamImage\" placeholder=\"Image URL\">\n           <button class=\"add__team__button\">Add Team</button>\n       </section>\n      ");
 }
 },{"./Heroes":"js/components/Heroes.js"}],"js/components/Header.js":[function(require,module,exports) {
 "use strict";
@@ -226,7 +244,48 @@ exports.default = Header;
 function Header() {
   return "\n    <header class=\"logo\">\n        <img src=\"https://pixel.nymag.com/imgs/daily/vulture/2016/07/23/23-marvel-logo.w700.h700.jpg\">\n        <h1>The Avengers</h1>\n    </header>\n    ";
 }
-},{}],"js/app.js":[function(require,module,exports) {
+},{}],"js/components/Power.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Power;
+
+function Power(power) {
+  return "\n        <h3 class=\"power__powerName item\">".concat(power.powerName, "</h3>\n        <p class=\"power__description item\">").concat(power.description, "</p>\n            ");
+}
+},{}],"js/components/Hero.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Hero;
+
+var _Powers = _interopRequireDefault(require("./Powers"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Hero(hero) {
+  return "\n        <h3 class=\"hero__heroName title\">Hero: ".concat(hero.heroName, "</h3>\n        <image src=\"").concat(hero.heroImage, "\">\n        <p class=\"hero__heroRatings\">Rating: ").concat(hero.heroRating, "/5</p>\n        <ul class=\"powers\">\n            <h3>Powers</h3>\n            <li class=\"power\">").concat((0, _Powers.default)(hero.powers), "</li>\n        </ul>\n        \n            <section class=\"add__power\">\n                <input type=\"text\" class=\"add__powerName\" placeholder=\"Power Name\">\n                <input type=\"text\" class=\"add__description\" placeholder=\"Description\">\n                <input type=\"text\" class=\"add__link\" placeholder=\"Link\">\n                <button class=\"add__hero__button\" id=\"").concat(hero.heroId, "\">Add Power</button>\n            </section>\n            <section class=\"add__heroRating\">\n                <input type=\"text\" class=\"add__heroRating__value\" placeholder=\"Rating\">\n                <button class=\"add__rating__button\" id=\"").concat(hero.heroId, "\">Submit</button>\n            </section>\n            ");
+}
+},{"./Powers":"js/components/Powers.js"}],"js/components/Team.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Team;
+
+var _Heroes = _interopRequireDefault(require("./Heroes"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Team(team) {
+  return "\n    <div class=\"team__container\">\n        <h3 class=\"team__teamName title\">Team: ".concat(team.teamName, "</h3>\n        <img src=\"").concat(team.teamImage, "\" class=\"team__teamImage\">\n \n        <ul class=\"heroes\">\n            <h3>Heroes</h3>\n            <li class=\"hero\">").concat((0, _Heroes.default)(team.heroes), "</li>\n        </ul>\n        <section class=\"add__album\">\n            <input type=\"text\" class=\"add__heroName\" placeholder=\"Hero Name\">\n            <input type=\"text\" class=\"add__heroImage\" placeholder=\"Image URL\">\n            <button class=\"add__album__button\" id=\"").concat(team.teamId, "\">Add Hero</button>\n        </section>\n        \n    </div>\n            ");
+}
+},{"./Heroes":"js/components/Heroes.js"}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
 var _apiAction = _interopRequireDefault(require("./utils/api/api-action"));
@@ -237,21 +296,152 @@ var _Teams = _interopRequireDefault(require("./components/Teams"));
 
 var _Header = _interopRequireDefault(require("./components/Header"));
 
+var _Powers = _interopRequireDefault(require("./components/Powers"));
+
+var _Power = _interopRequireDefault(require("./components/Power"));
+
+var _Heroes = _interopRequireDefault(require("./components/Heroes"));
+
+var _Hero = _interopRequireDefault(require("./components/Hero"));
+
+var _Team = _interopRequireDefault(require("./components/Team"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-viewAllTeams();
-(0, _Header.default)();
+main();
 
-function viewAllTeams() {
+function main() {
   _apiAction.default.getRequest('http://localhost:8080/teams', function (teams) {
     getAppContext().innerHTML = (0, _Teams.default)(teams);
+  });
+
+  navPowers();
+  navHeroes();
+  navTeams();
+  addTeams();
+  viewSingleTeam();
+  addHeroToTeam();
+  viewSingleHero();
+  addPowerToHero();
+  viewSinglePower();
+} // All Nav functions will live here
+
+
+function navTeams() {
+  var teamButton = document.querySelector('.nav__teams');
+
+  _eventAction.default.on(teamButton, 'click', function () {
+    _apiAction.default.getRequest('http://localhost:8080/teams', function (teams) {
+      getAppContext().innerHTML = (0, _Teams.default)(teams);
+    });
+  });
+}
+
+function navHeroes() {
+  var heroButton = document.querySelector('.nav__heroes');
+
+  _eventAction.default.on(heroButton, 'click', function () {
+    _apiAction.default.getRequest('http://localhost:8080/heroes', function (heroes) {
+      getAppContext().innerHTML = Heroes(heroes);
+    });
+  });
+}
+
+function navPowers() {
+  var powerButton = document.querySelector('.nav__powers');
+
+  _eventAction.default.on(powerButton, 'click', function () {
+    _apiAction.default.getRequest('http://localhost:8080/powers', function (powers) {
+      getAppContext().innerHTML = Powers(powers);
+    });
+  });
+} //All Team functions will live here
+
+
+function addTeams() {
+  _eventAction.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('add__team__button')) {
+      var teamName = document.querySelector('.add__teamName').value;
+      var teamImage = document.querySelector('.add__teamImage').value;
+
+      _apiAction.default.postRequest('http://localhost:8080/teams/add', {
+        teamName: teamName,
+        teamImage: teamImage
+      }, function (teams) {
+        return getAppContext().innerHTML = (0, _Teams.default)(teams);
+      });
+    }
+  });
+}
+
+function viewSingleTeam() {
+  _eventAction.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('team__teamName')) {
+      _apiAction.default.getRequest("http://localhost:8080/teams ".concat(event.target.teamId), function (team) {
+        getAppContext().innerHTML = Team(team);
+      });
+    }
+  });
+} //All Hero functions will live here
+
+
+function addHeroToTeam() {
+  _eventAction.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('add__hero__button')) {
+      var heroName = document.querySelector('.add__heroName').value;
+      var heroImage = document.querySelector('.add__heroImage').value;
+
+      _apiAction.default.postRequest("http://localhost:8080/heroes/add/".concat(event.target.teamId), {
+        heroName: heroName,
+        heroImage: heroImage
+      }, function (team) {
+        return getAppContext().innerHTML = Team(team);
+      });
+    }
+  });
+}
+
+function viewSingleHero() {
+  _eventAction.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('hero__heroName')) {
+      _apiAction.default.getRequest("http://localhost:8080/heroes ".concat(event.target.heroId), function (hero) {
+        getAppContext().innerHTML = Hero(hero);
+      });
+    }
+  });
+} // All song functions will live here
+
+
+function addPowerToHero() {
+  _eventAction.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('add__power__button')) {
+      var powerName = document.querySelector('.add__powerName').value;
+      var description = document.querySelector('.add__description').value;
+
+      _apiAction.default.postRequest("http://localhost:8080/powers/add/".concat(event.target.powerId), {
+        powerName: powerName,
+        description: description
+      }, function (hero) {
+        return getAppContext().innerHTML = Hero(hero);
+      });
+    }
+  });
+}
+
+function viewSinglePower() {
+  _eventAction.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('power__powerName')) {
+      _apiAction.default.getRequest("http://localhost:8080/powers".concat(event.target.powerId), function (power) {
+        getAppContext().innerHTML = Power(power);
+      });
+    }
   });
 }
 
 function getAppContext() {
-  return document.querySelector("#app");
+  return document.querySelector('#app');
 }
-},{"./utils/api/api-action":"js/utils/api/api-action.js","./utils/events/event-action":"js/utils/events/event-action.js","./components/Teams":"js/components/Teams.js","./components/Header":"js/components/Header.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./utils/api/api-action":"js/utils/api/api-action.js","./utils/events/event-action":"js/utils/events/event-action.js","./components/Teams":"js/components/Teams.js","./components/Header":"js/components/Header.js","./components/Powers":"js/components/Powers.js","./components/Power":"js/components/Power.js","./components/Heroes":"js/components/Heroes.js","./components/Hero":"js/components/Hero.js","./components/Team":"js/components/Team.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -279,7 +469,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51725" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56243" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
