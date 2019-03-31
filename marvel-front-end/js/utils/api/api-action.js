@@ -4,6 +4,7 @@ function getRequest(location, callback) {
         .then(data => callback(data))
         .catch(err => console.log(err));
  }
+ 
 
 function postRequest(location, requestBody, callback) {
     fetch(location, {
