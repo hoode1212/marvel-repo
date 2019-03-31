@@ -216,7 +216,79 @@ function Heroes(heroes) {
     return "\n                    <h4 class=\"hero__heroName\" id=\"".concat(hero.heroId, "\">").concat(hero.heroName, "</h4>\n                    ");
   }).join(''), "\n        </ul>\n    ");
 }
-},{"./Powers":"js/components/Powers.js"}],"js/components/Teams.js":[function(require,module,exports) {
+},{"./Powers":"js/components/Powers.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"css/teams.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"js/components/Teams.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -226,6 +298,8 @@ exports.default = Teams;
 
 var _Heroes = _interopRequireDefault(require("./Heroes"));
 
+require("../../css/teams.css");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Teams(teams) {
@@ -233,7 +307,7 @@ function Teams(teams) {
     return "\n                   <li class=\"team\">\n                       <h3 class=\"team__teamName\" id=\"".concat(team.teamId, "\">").concat(team.teamName, "</h3>\n                   </li>\n                   ");
   }).join(''), "\n       </ul>\n       <section class=\"add__team\">\n           <input type=\"text\" class=\"add__teamName\" placeholder=\"Team Name\">\n           <input type=\"text\" class=\"add__teamImage\" placeholder=\"Image URL\">\n           <button class=\"add__team__button\">Add Team</button>\n       </section>\n      ");
 }
-},{"./Heroes":"js/components/Heroes.js"}],"js/components/Header.js":[function(require,module,exports) {
+},{"./Heroes":"js/components/Heroes.js","../../css/teams.css":"css/teams.css"}],"js/components/Header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -469,7 +543,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56243" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57832" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
