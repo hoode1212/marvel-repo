@@ -24,8 +24,8 @@ public class Initializer implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 	
 			
-		Team hero = teamRepo.save(new Team("Avengers", null, 0));
-		Team villians = teamRepo.save(new Team("Black Order", null, 0));
+		Team hero = teamRepo.save(new Team("Avengers","https://i3.cpcache.com/product/1288169103/avengers_assemble_wall_art.jpg?height=400&width=400&qv=90&AttributeValue=Poster&Size=16x16", 0));
+		Team blackOrder = teamRepo.save(new Team("Black Order","https://cdnb.artstation.com/p/assets/images/images/011/162/079/20180604190150/smaller_square/everton-d-sousa-the-black-order-4.jpg?1528156911", 0));
 		
 		Hero hero1 = heroRepo.save(new Hero("Iron Man", "https://pbs.twimg.com/profile_images/990945984682381312/b_mxZW2H_400x400.jpg", 0, hero));
 		Hero hero2 = heroRepo.save(new Hero("Ant Man","https://yt3.ggpht.com/a-/AN66SAyzOISTN03zxy1Rjrj8J2a1JOKXZhfzUU15Dg=s900-mo-c-c0xffffffff-rj-k-no" , 0, hero));
@@ -40,6 +40,12 @@ public class Initializer implements CommandLineRunner {
 		Hero hero11 = heroRepo.save(new Hero("Okoye","https://www.picclickimg.com/d/l400/pict/132652846327_/Avengers-Infinity-War-Okoye-Movie-Poster-Fridge-Magnet.jpg", 0, hero));
 		Hero hero12 = heroRepo.save(new Hero("War Machine","https://i.pinimg.com/originals/3e/5e/54/3e5e54f4bba68792e1ba31b7140e26ab.jpg", 0, hero));
 		Hero hero13 = heroRepo.save(new Hero("Thanos", "https://pbs.twimg.com/profile_images/992168535039381504/rlneO9iC_400x400.jpg", 10, hero));
+		Hero hero14 = heroRepo.save(new Hero("Ebony Maw", "https://vignette.wikia.nocookie.net/marveldatabase/images/9/97/Infinity_Vol_1_6_Generals_Variant_Textless.jpg/revision/latest?cb=20131025202634", 7, hero));
+		Hero hero15 = heroRepo.save(new Hero("Supergiant", "https://vignette.wikia.nocookie.net/marveldatabase/images/0/03/Infinity_Vol_1_1_Generals_Variant_Textless.jpg/revision/latest?cb=20130516195933", 8, hero));
+		Hero hero16 = heroRepo.save(new Hero("Proxima Midnight", "https://upload.wikimedia.org/wikipedia/en/b/bd/Infinity_part_5_of_6_1-5_Proxima_Midnight.jpg", 7, hero));
+		Hero hero17 = heroRepo.save(new Hero("Black Dwarf", "https://upload.wikimedia.org/wikipedia/en/b/b5/Black_Dwarf.jpg", 6, hero));
+		Hero hero18 = heroRepo.save(new Hero("Corvus Glaive", "https://upload.wikimedia.org/wikipedia/en/2/2b/Corvus_Glaive.jpg", 6, hero));
+
 
 	}
 }
