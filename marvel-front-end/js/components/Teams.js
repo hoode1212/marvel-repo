@@ -1,20 +1,20 @@
 import Heroes from './Heroes'
 
-export default function Teams(teams){
-    return `
-    <ul>
-    ${teams.map(team => {
-        return `
-        <li>
-        <img src="${team.teamImage}" alt= "Team Image">
-        <h3>${team.teamName}</h3>
-        <h3>${team.teamRating}</h3>
-        <h3>${team.heroes}</h3>
-        </li>
-        `
-    }
-    )
-}
-</ul>
-`
+export default function Teams(teams) {
+   return `
+       <ul class="teams">
+           ${teams.map(team => {
+               return `
+                   <li class="team">
+                       <h3 class="team__teamName" id="${team.teamId}">${team.teamName}</h3>
+                   </li>
+                   `
+           }).join('')}
+       </ul>
+       <section class="add__team">
+           <input type="text" class="add__teamName" placeholder="Team Name">
+           <input type="text" class="add__teamImage" placeholder="Image URL">
+           <button class="add__team__button">Add Team</button>
+       </section>
+      `
 }
