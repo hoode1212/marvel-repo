@@ -79,7 +79,7 @@ function addTeams() {
 function viewSingleTeam() {
 	events.on(getAppContext(), 'click', () => {
 		if(event.target.classList.contains('team__teamName')) {
-			api.getRequest(`http://localhost:8080/teams ${event.target.teamId}`, team => {
+			api.getRequest(`http://localhost:8080/teams/${event.target.teamId}`, team => {
 				getAppContext().innerHTML = Team(team)
 			})
 		}
@@ -103,7 +103,7 @@ function addHeroToTeam(){
 function viewSingleHero(){
 	events.on(getAppContext(), 'click', () => {
 		if(event.target.classList.contains('hero__heroName')){
-			api.getRequest(`http://localhost:8080/heroes ${event.target.heroId}`, hero => {
+			api.getRequest(`http://localhost:8080/heroes/${event.target.heroId}`, hero => {
         getAppContext().innerHTML = Hero(hero)
 			})
 		}
@@ -128,7 +128,7 @@ function addPowerToHero(){
 function viewSinglePower() {
 	events.on(getAppContext(), 'click', () => {
 		if(event.target.classList.contains('power__powerName')) {
-			api.getRequest(`http://localhost:8080/powers${event.target.powerId}`, power => {
+			api.getRequest(`http://localhost:8080/powers/${event.target.powerId}`, power => {
 				getAppContext().innerHTML = Power(power)
 			})
 		}
