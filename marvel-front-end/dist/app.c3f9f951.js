@@ -198,7 +198,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function Heroes(heroes) {
   return "\n        <ul class=\"heroes\">\n            ".concat(heroes.map(function (hero) {
-    return "\n                    <h4 class=\"hero__heroName\" id=\"".concat(hero.heroId, "\">").concat(hero.heroName, "</h4>\n                    ");
+    return "\n                <li class=\"hero\">\n                    <h4 class=\"hero__heroName\" id=\"".concat(hero.heroId, "\">").concat(hero.heroName, "</h4>\n                    ").concat(hero.powers, "\n                    </li>\n                    ");
   }).join(''), "\n        </ul>\n    ");
 }
 },{"./Powers":"js/components/Powers.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
@@ -288,9 +288,11 @@ require("../../css/teams.css");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Teams(teams) {
+  console.log(teams);
   return "\n       <ul class=\"teams\">\n           ".concat(teams.map(function (team) {
-    return "\n                   <li class=\"team\">\n                       <h3 class=\"team__teamName\" id=\"".concat(team.teamId, "\">").concat(team.teamName, "</h3>\n                   </li>\n                   ");
-  }).join(''), "\n       </ul>\n       <section class=\"add__team\">\n           <input type=\"text\" class=\"add__teamName\" placeholder=\"Team Name\">\n           <input type=\"text\" class=\"add__teamImage\" placeholder=\"Image URL\">\n           <button class=\"add__team__button\">Add Team</button>\n       </section>\n      ");
+    console.log(team.heroes);
+    return "\n                   <li class=\"team\">\n                       <h3 class=\"team__teamName\" id=\"".concat(team.teamId, "\">").concat(team.teamName, "</h3>\n                       ").concat(team.heroes, "\n                   </li>\n                   ");
+  }).join(''), "\n       </ul>\n      ");
 }
 },{"./Heroes":"js/components/Heroes.js","../../css/teams.css":"css/teams.css"}],"js/components/Header.js":[function(require,module,exports) {
 "use strict";
@@ -327,7 +329,7 @@ var _Powers = _interopRequireDefault(require("./Powers"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Hero(hero) {
-  return "\n        <h3 class=\"hero__heroName title\">Hero: ".concat(hero.heroName, "</h3>\n        <image src=\"").concat(hero.heroImage, "\">\n        <p class=\"hero__heroRatings\">Rating: ").concat(hero.heroRating, "/5</p>\n        <ul class=\"powers\">\n            <h3>Powers</h3>\n            <li class=\"power\">").concat((0, _Powers.default)(hero.powers), "</li>\n        </ul>\n        \n            <section class=\"add__power\">\n                <input type=\"text\" class=\"add__powerName\" placeholder=\"Power Name\">\n                <input type=\"text\" class=\"add__description\" placeholder=\"Description\">\n                <input type=\"text\" class=\"add__link\" placeholder=\"Link\">\n                <button class=\"add__hero__button\" id=\"").concat(hero.heroId, "\">Add Power</button>\n            </section>\n            <section class=\"add__heroRating\">\n                <input type=\"text\" class=\"add__heroRating__value\" placeholder=\"Rating\">\n                <button class=\"add__rating__button\" id=\"").concat(hero.heroId, "\">Submit</button>\n            </section>\n            ");
+  return "\n        <h3 class=\"hero__heroName title\">Hero: ".concat(hero.heroName, "</h3>\n        <image src=\"").concat(hero.heroImage, "\">\n        <p class=\"hero__heroRatings\">Rating: ").concat(hero.heroRating, "/5</p>\n        ").concat(hero.powers, "\n            ");
 }
 },{"./Powers":"js/components/Powers.js"}],"js/components/Team.js":[function(require,module,exports) {
 "use strict";
@@ -342,7 +344,7 @@ var _Heroes = _interopRequireDefault(require("./Heroes"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Team(team) {
-  return "\n    <div class=\"team__container\">\n        <h3 class=\"team__teamName title\">Team: ".concat(team.teamName, "</h3>\n        <img src=\"").concat(team.teamImage, "\" class=\"team__teamImage\">\n \n        <ul class=\"heroes\">\n            <h3>Heroes</h3>\n            <li class=\"hero\">").concat((0, _Heroes.default)(team.heroes), "</li>\n        </ul>\n        <section class=\"add__album\">\n            <input type=\"text\" class=\"add__heroName\" placeholder=\"Hero Name\">\n            <input type=\"text\" class=\"add__heroImage\" placeholder=\"Image URL\">\n            <button class=\"add__album__button\" id=\"").concat(team.teamId, "\">Add Hero</button>\n        </section>\n        \n    </div>\n            ");
+  return "\n    <div class=\"team__container\">\n        <h3 class=\"team__teamName title\">Team: ".concat(team.teamName, "</h3>\n        <img src=\"").concat(team.teamImage, "\" class=\"team__teamImage\">\n \n        <ul class=\"heroes\">\n            <li class=\"hero\">\n            ").concat(team.heroes, "\n            </li>\n        </ul>        \n    </div>\n            ");
 }
 },{"./Heroes":"js/components/Heroes.js"}],"js/app.js":[function(require,module,exports) {
 "use strict";
@@ -437,7 +439,7 @@ function addTeams() {
 function viewSingleTeam() {
   _eventAction.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('team__teamName')) {
-      _apiAction.default.getRequest("http://localhost:8080/teams ".concat(event.target.teamId), function (team) {
+      _apiAction.default.getRequest("http://localhost:8080/teams/".concat(event.target.teamId), function (team) {
         getAppContext().innerHTML = (0, _Team.default)(team);
       });
     }
@@ -464,7 +466,7 @@ function addHeroToTeam() {
 function viewSingleHero() {
   _eventAction.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('hero__heroName')) {
-      _apiAction.default.getRequest("http://localhost:8080/heroes ".concat(event.target.heroId), function (hero) {
+      _apiAction.default.getRequest("http://localhost:8080/heroes/".concat(event.target.heroId), function (hero) {
         getAppContext().innerHTML = (0, _Hero.default)(hero);
       });
     }
@@ -491,7 +493,7 @@ function addPowerToHero() {
 function viewSinglePower() {
   _eventAction.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('power__powerName')) {
-      _apiAction.default.getRequest("http://localhost:8080/powers".concat(event.target.powerId), function (power) {
+      _apiAction.default.getRequest("http://localhost:8080/powers/".concat(event.target.powerId), function (power) {
         getAppContext().innerHTML = (0, _Power.default)(power);
       });
     }
@@ -529,7 +531,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60590" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52302" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

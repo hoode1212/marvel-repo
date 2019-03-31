@@ -5,7 +5,10 @@ export default function Heroes(heroes) {
         <ul class="heroes">
             ${heroes.map(hero => {
                 return `
+                <li class="hero">
                     <h4 class="hero__heroName" id="${hero.heroId}">${hero.heroName}</h4>
+                    ${hero.powers}
+                    </li>
                     `
                 }).join('')}
         </ul>
