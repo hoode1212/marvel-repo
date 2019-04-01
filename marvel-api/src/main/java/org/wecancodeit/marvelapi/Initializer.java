@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 import org.wecancodeit.marvelapi.models.Hero;
+import org.wecancodeit.marvelapi.models.Power;
 import org.wecancodeit.marvelapi.models.Team;
 import org.wecancodeit.marvelapi.repositories.HeroRepository;
 import org.wecancodeit.marvelapi.repositories.PowerRepository;
@@ -39,13 +40,20 @@ public class Initializer implements CommandLineRunner {
 		Hero hero10 = heroRepo.save(new Hero("Hawkeye","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU3V7da32s15xm5S_n5A_HfbEzfouOFrcFJo2EM-zyBsD0Lf0wIA", 0, hero));
 		Hero hero11 = heroRepo.save(new Hero("Okoye","https://www.picclickimg.com/d/l400/pict/132652846327_/Avengers-Infinity-War-Okoye-Movie-Poster-Fridge-Magnet.jpg", 0, hero));
 		Hero hero12 = heroRepo.save(new Hero("War Machine","https://i.pinimg.com/originals/3e/5e/54/3e5e54f4bba68792e1ba31b7140e26ab.jpg", 0, hero));
-		Hero hero13 = heroRepo.save(new Hero("Thanos", "https://pbs.twimg.com/profile_images/992168535039381504/rlneO9iC_400x400.jpg", 10, hero));
-		Hero hero14 = heroRepo.save(new Hero("Ebony Maw", "https://vignette.wikia.nocookie.net/marveldatabase/images/9/97/Infinity_Vol_1_6_Generals_Variant_Textless.jpg/revision/latest?cb=20131025202634", 7, hero));
-		Hero hero15 = heroRepo.save(new Hero("Supergiant", "https://vignette.wikia.nocookie.net/marveldatabase/images/0/03/Infinity_Vol_1_1_Generals_Variant_Textless.jpg/revision/latest?cb=20130516195933", 8, hero));
-		Hero hero16 = heroRepo.save(new Hero("Proxima Midnight", "https://upload.wikimedia.org/wikipedia/en/b/bd/Infinity_part_5_of_6_1-5_Proxima_Midnight.jpg", 7, hero));
-		Hero hero17 = heroRepo.save(new Hero("Black Dwarf", "https://upload.wikimedia.org/wikipedia/en/b/b5/Black_Dwarf.jpg", 6, hero));
-		Hero hero18 = heroRepo.save(new Hero("Corvus Glaive", "https://upload.wikimedia.org/wikipedia/en/2/2b/Corvus_Glaive.jpg", 6, hero));
+		Hero hero13 = heroRepo.save(new Hero("Thanos", "https://pbs.twimg.com/profile_images/992168535039381504/rlneO9iC_400x400.jpg", 10, blackOrder));
+		Hero hero14 = heroRepo.save(new Hero("Ebony Maw", "https://vignette.wikia.nocookie.net/marveldatabase/images/9/97/Infinity_Vol_1_6_Generals_Variant_Textless.jpg/revision/latest?cb=20131025202634", 7, blackOrder));
+		Hero hero15 = heroRepo.save(new Hero("Supergiant", "https://vignette.wikia.nocookie.net/marveldatabase/images/0/03/Infinity_Vol_1_1_Generals_Variant_Textless.jpg/revision/latest?cb=20130516195933", 8, blackOrder));
+		Hero hero16 = heroRepo.save(new Hero("Proxima Midnight", "https://upload.wikimedia.org/wikipedia/en/b/bd/Infinity_part_5_of_6_1-5_Proxima_Midnight.jpg", 7, blackOrder));
+		Hero hero17 = heroRepo.save(new Hero("Black Dwarf", "https://upload.wikimedia.org/wikipedia/en/b/b5/Black_Dwarf.jpg", 6, blackOrder));
+		Hero hero18 = heroRepo.save(new Hero("Corvus Glaive", "https://upload.wikimedia.org/wikipedia/en/2/2b/Corvus_Glaive.jpg", 6, blackOrder));
 
-
+		powerRepo.save(new Power("flying", "pretty self descriptive", 5, hero1));
+		powerRepo.save(new Power("genius", "is really smart", 5, hero1));
+		powerRepo.save(new Power("I am Groot", "I am Groot", 5, hero6));
+		powerRepo.save(new Power("life", "perfectly balanced", 5, hero13));
+		powerRepo.save(new Power("precision", "never misses target", 5, hero10));
+		powerRepo.save(new Power("strongest there is", "infinite strength", 5, hero3));
+		
+		
 	}
 }
