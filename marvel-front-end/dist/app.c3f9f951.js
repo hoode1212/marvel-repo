@@ -327,7 +327,7 @@ var _Powers = _interopRequireDefault(require("./Powers"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Hero(hero) {
-  return "\n        <h3 class=\"hero__heroName title\">Hero: ".concat(hero.heroName, "</h3>\n        <image src=\"").concat(hero.heroImage, "\">\n        <p class=\"hero__heroRating\">Rating: ").concat(hero.heroRating, "/5</p>\n<ul class=\"powers\">\n    <h3>Powers</h3>\n    <li class=\"power\">").concat((0, _Powers.default)(hero.powers), "</li>\n</ul>\n\n    <section class=\"add__power\">\n        <input type=\"text\" class=\"add__powerName\" placeholder=\"Power Name\">\n        <input type=\"text\" class=\"add__description\" placeholder=\"Description\">\n        <input type=\"text\" class=\"add__powerRating\" placeholder=\"Power Rating\">\n        <button class=\"add__power__button\" id=\"").concat(hero.heroId, "\">Add Power</button>\n    </section>\n            ");
+  return "\n        <h3 class=\"hero__heroName\">Hero: ".concat(hero.heroName, "</h3>\n        <image src=\"").concat(hero.heroImage, "\">\n        <p class=\"hero__heroRating\">Rating: ").concat(hero.heroRating, "/5</p>\n<ul class=\"powers\">\n    <h3>Powers</h3>\n    <li class=\"power\">").concat((0, _Powers.default)(hero.powers), "</li>\n</ul>\n\n    <section class=\"add__power\">\n        <input type=\"text\" class=\"add__powerName\" placeholder=\"Power Name\">\n        <input type=\"text\" class=\"add__description\" placeholder=\"Description\">\n        <input type=\"text\" class=\"add__powerRating\" placeholder=\"Power Rating\">\n        <button class=\"add__power__button\" id=\"").concat(hero.heroId, "\">Add Power</button>\n    </section>\n            ");
 }
 },{"./Powers":"js/components/Powers.js"}],"js/components/Team.js":[function(require,module,exports) {
 "use strict";
@@ -384,7 +384,7 @@ function main() {
   viewSingleHero();
   addPowerToHero();
   viewSinglePower();
-} // All Nav functions will live here
+} // START NAV FUNCTIONS AT THE HEADER
 
 
 function navTeams() {
@@ -415,7 +415,8 @@ function navPowers() {
       getAppContext().innerHTML = (0, _Powers.default)(powers);
     });
   });
-} //All Team functions will live here
+} // END NAV FUNCTIONS AT HEADER
+// START TEAM FUNCTIONS
 
 
 function addTeams() {
@@ -444,7 +445,8 @@ function viewSingleTeam() {
       });
     }
   });
-} //All Hero functions will live here
+} // END TEAM FUNCTIONS
+// START HERO FUNCTIONS
 
 
 function addHeroToTeam() {
@@ -473,7 +475,8 @@ function viewSingleHero() {
       });
     }
   });
-} // All song functions will live here
+} // END HERO FUNCTIONS
+// START POWER FUNCTIONS
 
 
 function addPowerToHero() {
@@ -502,7 +505,8 @@ function viewSinglePower() {
       });
     }
   });
-}
+} // END HERO FUNCTIONS
+
 
 function getAppContext() {
   return document.querySelector('#app');
@@ -535,7 +539,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60251" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49340" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
