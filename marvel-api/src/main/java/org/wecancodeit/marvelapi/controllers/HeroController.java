@@ -51,6 +51,25 @@ public class HeroController {
 	heroRepo.save(new Hero (heroName, heroImage, heroRating, team));
 		return (Collection<Team>)teamRepo.findAll();
 	}
+	
+
+	@PostMapping("/add/{id}")
+	public Team addHeroToTeam(@PathVariable Long id, @RequestBody String body) throws JSONException {
+		JSONObject newHero = new JSONObject(body);
+		String heroName = newHero.getString("heroName");
+		String heroImage = newHero.getString("heroImage");
+		int heroRating = Integer.parseInt(newHero.getString("heroRating"));
+		Team teamToAdd = teamRepo.findById(id).get();
+		heroRepo.save(new Hero(heroName, heroImage, heroRating, teamToAdd));
+		teamToAdd = teamRepo.findById(id).get();
+		return teamToAdd;
+		
+	}
+
+
+}
+	
+	
 //	
 //	@PostMapping("/comments/add")
 //	public Collection<Team> addTeamComment(@RequestBody String body) throws JSONException {
@@ -60,4 +79,4 @@ public class HeroController {
 //		commentRepo.save(new HeroComment(heroCommentBody, hero));
 //		return (Collection<Team>) teamRepo.findAll();
 //	}
-}
+

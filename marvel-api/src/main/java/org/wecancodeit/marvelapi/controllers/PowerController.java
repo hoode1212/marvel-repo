@@ -44,17 +44,21 @@ public class PowerController {
 		return powerRepo.findById(id).get();
 	}
 
-	@PostMapping("/add")
-	public Collection<Team> addPower(@RequestBody String body) throws JSONException {
+	@PostMapping("/add/{id}")
+	public Hero addPower(@PathVariable Long id, @RequestBody String body) throws JSONException{
 
 		JSONObject newPower = new JSONObject(body);
-		String powerTitle = newPower.getString("powerTitle");
-		String duration = newPower.getString("duration");
+		String powerName = newPower.getString("powerName");
+		String description = newPower.getString("description");
 		int powerRating = Integer.parseInt(newPower.getString("powerRating"));
-		Hero hero = heroRepo.findByHeroName(newPower.getString("hero"));
-		powerRepo.save(new Power(powerTitle, duration, powerRating, hero));
-		return (Collection<Team>) teamRepo.findAll();
+		Hero heroToAdd = heroRepo.findById(id).get();
+	    powerRepo.save(new Power(powerName, description, powerRating, heroToAdd));
+	    heroToAdd = heroRepo.findById(id).get();
+	    return heroToAdd;
 	}
+
+	
+	
 //	
 //	@PostMapping("/comments/add")
 //	public Collection<Team> addPowerComment(@RequestBody String body) throws JSONException {

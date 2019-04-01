@@ -68,9 +68,11 @@ function addTeams() {
 		if(event.target.classList.contains('add__team__button')) {
 			const teamName = document.querySelector('.add__teamName').value
 			const teamImage = document.querySelector('.add__teamImage').value
+			const teamRating = document.querySelector('.add__teamRating').value
 			api.postRequest('http://localhost:8080/teams/add', {
 				teamName : teamName,
-				teamImage : teamImage
+				teamImage : teamImage,
+				teamRating : teamRating
 			}, (teams) => getAppContext().innerHTML = Teams(teams))
 		}
 	})
@@ -92,9 +94,11 @@ function addHeroToTeam(){
 		if(event.target.classList.contains('add__hero__button')){
 			const heroName = document.querySelector('.add__heroName').value
 			const heroImage = document.querySelector('.add__heroImage').value
+			const heroRating = document.querySelector('.add__heroRating').value
 			api.postRequest(`http://localhost:8080/heroes/add/${event.target.id}`, {
 				heroName : heroName,
-				heroImage : heroImage,	
+				heroImage : heroImage,
+				heroRating : heroRating	
 			}, (team) => getAppContext().innerHTML = Team(team) )
 		}
 	})
@@ -117,9 +121,11 @@ function addPowerToHero(){
 		if(event.target.classList.contains('add__power__button')){
 			const powerName = document.querySelector('.add__powerName').value
 			const description = document.querySelector('.add__description').value
+			const powerRating = document.querySelector('.add__powerRating').value
         api.postRequest(`http://localhost:8080/powers/add/${event.target.id}`, {
 				powerName : powerName,
 				description : description,
+				powerRating : powerRating
 			}, (hero) => getAppContext().innerHTML = Hero(hero))
 		}
 	})

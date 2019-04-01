@@ -13,5 +13,11 @@ export default function Teams(teams) {
                    `
            }).join('')}
        </ul>
+       <section class="add__team">
+            <input type="text" class="add__teamName" placeholder="Team Name">
+            <input type="text" class="add__teamImage" placeholder="Image URL">
+            <input type="text" class="add__teamRating" placeholder="Rating">
+            <button class="add__team__button">Add Team</button>
+        </section>
       `
 }

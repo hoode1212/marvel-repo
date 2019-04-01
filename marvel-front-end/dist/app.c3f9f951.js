@@ -290,7 +290,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Teams(teams) {
   return "\n       <ul class=\"teams\">\n           ".concat(teams.map(function (team) {
     return "\n                   <li class=\"team\">\n                       <h3 class=\"team__teamName\" id=\"".concat(team.teamId, "\">").concat(team.teamName, "</h3>\n                       \n                   </li>\n                   ");
-  }).join(''), "\n       </ul>\n      ");
+  }).join(''), "\n       </ul>\n       <section class=\"add__team\">\n            <input type=\"text\" class=\"add__teamName\" placeholder=\"Team Name\">\n            <input type=\"text\" class=\"add__teamImage\" placeholder=\"Image URL\">\n            <input type=\"text\" class=\"add__teamRating\" placeholder=\"Rating\">\n            <button class=\"add__team__button\">Add Team</button>\n        </section>\n      ");
 }
 },{"./Heroes":"js/components/Heroes.js","../../css/teams.css":"css/teams.css"}],"js/components/Header.js":[function(require,module,exports) {
 "use strict";
@@ -327,7 +327,7 @@ var _Powers = _interopRequireDefault(require("./Powers"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Hero(hero) {
-  return "\n        <h3 class=\"hero__heroName title\">Hero: ".concat(hero.heroName, "</h3>\n        <image src=\"").concat(hero.heroImage, "\">\n        <p class=\"hero__heroRatings\">Rating: ").concat(hero.heroRating, "/5</p>\n        \n        <ul class=\"powers\">\n            <li class=\"power\">\n            ").concat((0, _Powers.default)(hero.powers), "\n            </li>\n        </ul>        \n            ");
+  return "\n        <h3 class=\"hero__heroName title\">Hero: ".concat(hero.heroName, "</h3>\n        <image src=\"").concat(hero.heroImage, "\">\n        <p class=\"hero__heroRating\">Rating: ").concat(hero.heroRating, "/5</p>\n<ul class=\"powers\">\n    <h3>Powers</h3>\n    <li class=\"power\">").concat((0, _Powers.default)(hero.powers), "</li>\n</ul>\n\n    <section class=\"add__power\">\n        <input type=\"text\" class=\"add__powerName\" placeholder=\"Power Name\">\n        <input type=\"text\" class=\"add__description\" placeholder=\"Description\">\n        <input type=\"text\" class=\"add__powerRating\" placeholder=\"Power Rating\">\n        <button class=\"add__power__button\" id=\"").concat(hero.heroId, "\">Add Power</button>\n    </section>\n            ");
 }
 },{"./Powers":"js/components/Powers.js"}],"js/components/Team.js":[function(require,module,exports) {
 "use strict";
@@ -342,7 +342,7 @@ var _Heroes = _interopRequireDefault(require("./Heroes"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Team(team) {
-  return "\n    <div class=\"team__container\">\n        <h3 class=\"team__teamName title\">Team: ".concat(team.teamName, "</h3>\n        <img src=\"").concat(team.teamImage, "\" class=\"team__teamImage\">\n \n        <ul class=\"heroes\">\n            <li class=\"hero\">\n            ").concat((0, _Heroes.default)(team.heroes), "\n            </li>\n        </ul>        \n    </div>\n            ");
+  return "\n    <div class=\"team__container\">\n        <h3 class=\"team__teamName title\">Team: ".concat(team.teamName, "</h3>\n        <img src=\"").concat(team.teamImage, "\" class=\"team__teamImage\">\n \n        <ul class=\"heroes\">\n            <li class=\"hero\">\n            ").concat((0, _Heroes.default)(team.heroes), "\n            </li>\n        </ul> \n        \n        <section class=\"add__hero\">\n            <input type=\"text\" class=\"add__heroName\" placeholder=\"Hero Name\">\n            <input type=\"text\" class=\"add__heroImage\" placeholder=\"Image URL\">\n            <input type=\"text\" class=\"add__heroRating\" placeholder=\"Hero Rating\">\n            <button class=\"add__hero__button\" id=\"").concat(team.teamId, "\">Add Hero</button>\n        </section>\n        \n    </div>\n            ");
 }
 },{"./Heroes":"js/components/Heroes.js"}],"js/app.js":[function(require,module,exports) {
 "use strict";
@@ -423,10 +423,12 @@ function addTeams() {
     if (event.target.classList.contains('add__team__button')) {
       var teamName = document.querySelector('.add__teamName').value;
       var teamImage = document.querySelector('.add__teamImage').value;
+      var teamRating = document.querySelector('.add__teamRating').value;
 
       _apiAction.default.postRequest('http://localhost:8080/teams/add', {
         teamName: teamName,
-        teamImage: teamImage
+        teamImage: teamImage,
+        teamRating: teamRating
       }, function (teams) {
         return getAppContext().innerHTML = (0, _Teams.default)(teams);
       });
@@ -450,10 +452,12 @@ function addHeroToTeam() {
     if (event.target.classList.contains('add__hero__button')) {
       var heroName = document.querySelector('.add__heroName').value;
       var heroImage = document.querySelector('.add__heroImage').value;
+      var heroRating = document.querySelector('.add__heroRating').value;
 
       _apiAction.default.postRequest("http://localhost:8080/heroes/add/".concat(event.target.id), {
         heroName: heroName,
-        heroImage: heroImage
+        heroImage: heroImage,
+        heroRating: heroRating
       }, function (team) {
         return getAppContext().innerHTML = (0, _Team.default)(team);
       });
@@ -477,10 +481,12 @@ function addPowerToHero() {
     if (event.target.classList.contains('add__power__button')) {
       var powerName = document.querySelector('.add__powerName').value;
       var description = document.querySelector('.add__description').value;
+      var powerRating = document.querySelector('.add__powerRating').value;
 
       _apiAction.default.postRequest("http://localhost:8080/powers/add/".concat(event.target.id), {
         powerName: powerName,
-        description: description
+        description: description,
+        powerRating: powerRating
       }, function (hero) {
         return getAppContext().innerHTML = (0, _Hero.default)(hero);
       });
@@ -529,7 +535,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59946" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60251" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

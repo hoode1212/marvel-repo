@@ -10,7 +10,15 @@ export default function Team(team) {
             <li class="hero">
             ${Heroes(team.heroes)}
             </li>
-        </ul>        
+        </ul> 
+        
+        <section class="add__hero">
+            <input type="text" class="add__heroName" placeholder="Hero Name">
+            <input type="text" class="add__heroImage" placeholder="Image URL">
+            <input type="text" class="add__heroRating" placeholder="Hero Rating">
+            <button class="add__hero__button" id="${team.teamId}">Add Hero</button>
+        </section>
+        
     </div>
             `
 }       
