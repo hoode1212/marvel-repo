@@ -147,7 +147,7 @@ function viewSinglePower() {
 	})
 }
 
-// END HERO FUNCTIONS
+// END POWER FUNCTIONS
 
 function getAppContext() {
 	return document.querySelector('#app')
