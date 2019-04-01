@@ -31,7 +31,7 @@ function main() {
 
 
 
-// All Nav functions will live here
+// START NAV FUNCTIONS AT THE HEADER
 function navTeams() {
 	const teamButton = document.querySelector('.nav__teams');
 	events.on(teamButton, 'click', ()=> {
@@ -59,10 +59,11 @@ function navPowers() {
 	})
 }
 
+// END NAV FUNCTIONS AT HEADER
 
 
 
-//All Team functions will live here
+// START TEAM FUNCTIONS
 function addTeams() {
 	events.on(getAppContext(), 'click', ()=> {
 		if(event.target.classList.contains('add__team__button')) {
@@ -87,7 +88,10 @@ function viewSingleTeam() {
 		}
 	})
 }
-//All Hero functions will live here
+// END TEAM FUNCTIONS
+
+
+// START HERO FUNCTIONS
 
 function addHeroToTeam(){
 	events.on(getAppContext(), 'click', () =>{
@@ -114,7 +118,9 @@ function viewSingleHero(){
 	})
 }
 
-// All song functions will live here
+// END HERO FUNCTIONS
+
+// START POWER FUNCTIONS
 
 function addPowerToHero(){
 	events.on(getAppContext(), 'click', () =>{
@@ -140,6 +146,8 @@ function viewSinglePower() {
 		}
 	})
 }
+
+// END POWER FUNCTIONS
 
 function getAppContext() {
 	return document.querySelector('#app')

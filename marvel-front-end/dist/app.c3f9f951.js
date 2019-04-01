@@ -384,7 +384,7 @@ function main() {
   viewSingleHero();
   addPowerToHero();
   viewSinglePower();
-} // All Nav functions will live here
+} // START NAV FUNCTIONS AT THE HEADER
 
 
 function navTeams() {
@@ -415,7 +415,8 @@ function navPowers() {
       getAppContext().innerHTML = (0, _Powers.default)(powers);
     });
   });
-} //All Team functions will live here
+} // END NAV FUNCTIONS AT HEADER
+// START TEAM FUNCTIONS
 
 
 function addTeams() {
@@ -444,7 +445,8 @@ function viewSingleTeam() {
       });
     }
   });
-} //All Hero functions will live here
+} // END TEAM FUNCTIONS
+// START HERO FUNCTIONS
 
 
 function addHeroToTeam() {
@@ -473,7 +475,8 @@ function viewSingleHero() {
       });
     }
   });
-} // All song functions will live here
+} // END HERO FUNCTIONS
+// START POWER FUNCTIONS
 
 
 function addPowerToHero() {
@@ -502,7 +505,8 @@ function viewSinglePower() {
       });
     }
   });
-}
+} // END POWER FUNCTIONS
+
 
 function getAppContext() {
   return document.querySelector('#app');
@@ -535,7 +539,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60251" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49504" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
