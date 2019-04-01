@@ -342,7 +342,7 @@ var _Heroes = _interopRequireDefault(require("./Heroes"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Team(team) {
-  return "\n    <div class=\"team__container\">\n        <h3 class=\"team__teamName title\">Team: ".concat(team.teamName, "</h3>\n        <img src=\"").concat(team.teamImage, "\" class=\"team__teamImage\">\n \n        <ul class=\"heroes\">\n            <li class=\"hero\">\n            ").concat((0, _Heroes.default)(team.heroes), "\n            </li>\n        </ul> \n        \n        <section class=\"add__hero\">\n            <input type=\"text\" class=\"add__heroName\" placeholder=\"Hero Name\">\n            <input type=\"text\" class=\"add__heroImage\" placeholder=\"Image URL\">\n            <input type=\"text\" class=\"add__heroRating\" placeholder=\"Hero Rating\">\n            <button class=\"add__hero__button\" id=\"").concat(team.teamId, "\">Add Hero</button>\n        </section>\n        \n    </div>\n            ");
+  return "\n    <div class=\"team__container\">\n        <h3 class=\"team__teamName title\">Team: ".concat(team.teamName, "</h3>\n        <img src=\"").concat(team.teamImage, "\" class=\"team__teamImage\">\n\n        <ul class=\"heroes\">\n            <li class=\"hero\">\n            ").concat((0, _Heroes.default)(team.heroes), "\n            </li>\n        </ul> \n        \n        <section class=\"add__hero\">\n            <input type=\"text\" class=\"add__heroName\" placeholder=\"Hero Name\">\n            <input type=\"text\" class=\"add__heroImage\" placeholder=\"Image URL\">\n            <input type=\"text\" class=\"add__heroRating\" placeholder=\"Hero Rating\">\n            <button class=\"add__hero__button\" id=\"").concat(team.teamId, "\">Add Hero</button>\n        </section>\n        \n    </div>\n            ");
 }
 },{"./Heroes":"js/components/Heroes.js"}],"js/app.js":[function(require,module,exports) {
 "use strict";
@@ -539,7 +539,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49340" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49390" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
